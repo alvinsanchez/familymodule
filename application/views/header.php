@@ -3,23 +3,11 @@
 <head>
 	<title>School Organization Management System</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/jquery-ui/jquery-ui.min.css">
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap-theme.min.css') ?>">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/bootstrap-notify/animate.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/bootstrap/css/style.css">
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/bootstrap-notify/bootstrap-notify.js"></script>
-	<script src="<?php echo base_url() ?>assets/easypiechart/src/easypiechart.js"></script>
-	<script>
-	function autoAdjust(a){
-
-		a.style.height = "1px";
-		a.style.height = (25+a.scrollHeight)+"px";
-	}
-	</script>
 </head>
 <body>
 
