@@ -4,7 +4,7 @@
                 <div class="col-xs-2 align">
 				</div>
 				<div class="col-xs-8 align well">
-                
+
                     
                     <table class="table table-bordered col-xs-12 table-sm table">
                         <thead>
@@ -36,8 +36,9 @@
                     var html = '';
                     for(var i=0; i < a.length; i++){
                         html += '<tr>' +
-                                '<td>' + a[i].fname + ' ' + a[i].lname +'</td>' +
+                                '<td><a href="#" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
                                 '<td>' + a[i].email +'</td>' +
+                               
                                 '</tr>';
                     }
                     $('#showdata').html(html);
@@ -47,6 +48,13 @@
                 }
             });
         }
+
+        $(document).on('click', 'a', function(){
+            
+            var a = $(this).data('a');
+            alert(a);
+        });
+        
     });
 
 </script>
