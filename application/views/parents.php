@@ -4,11 +4,10 @@
 				</div>
 				<div class="col-xs-8 align" style="background-color: #FAFAFA; border:thin solid #ccc;padding: 1%;">
 
-<<<<<<< HEAD
-=======
+
 										<input type="text" class="form-control" id="search" name="search" placeholder="Search parent..."><br/>
 
->>>>>>> 4b5356bf651eb821723300db8a84bcfd925c55bc
+
                     <table class="table table-bordered col-xs-12 table-sm table">
                         <thead>
                         <tr class="align bg-primary">
@@ -57,9 +56,9 @@
         //     alert(a);
         // });
 
-<<<<<<< HEAD
+
 		});
-=======
+
         $('#search').on('keyup' , function(){
             var search = $(this).val()
 
@@ -95,8 +94,7 @@
             });
 
         });
-        
-    });
->>>>>>> 4b5356bf651eb821723300db8a84bcfd925c55bc
+    
+
 
 </script>
