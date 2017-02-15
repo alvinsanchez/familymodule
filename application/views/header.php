@@ -20,16 +20,20 @@
 <div class="navbar navbar-inverse">
 	<div class="container">
 	<a class="navbar-brand" href="#" style="color: #FFF;"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp;&nbsp;Family Module</a>
-	
+
 				<ul class="nav navbar-nav">
 				<li>
 					<a href="newstudent">New Student</a>
 				</li>
 				<li>
+
 					<a href="parents">List of Parents</a>
 				</li>
 				<li>
 					
+
+
+
 				</li>
 			 	<li class="dropdown">
 				 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="color: #FFF;"><span class="glyphicon glyphicon-cog"></span></a>
@@ -37,11 +41,11 @@
 					 <li><a href="#">Account Settings</a></li>
 					 <li><a href="<?php echo base_url() ?>admin/Admin/logout">Logout</a></li>
 				 </ul>
-				
-      
-			
+
+
+
 	 </li>
  </ul>
 	</div>
 </div>
-<div class="container">
+<div class="container-fluid">
