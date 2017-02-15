@@ -81,8 +81,14 @@
 
                     for(var i=0; i < a.length; i++){
                         html += '<tr>' +
+
                                 '<td><a href=""parentsPage?id='+a[i].familyid +'"" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
                                 '<td>' + a[i].email +'</td>' +
+
+                                '<td><a href="parentsPage?id='+a[i].familyid +'" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
+                                '<td>' + a[i].email +'</td>' +
+
+
                                 '</tr>';
                     }
                     $('#showdata').html(html);
