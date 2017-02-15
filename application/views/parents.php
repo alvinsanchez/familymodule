@@ -5,7 +5,6 @@
 				</div>
 				<div class="col-xs-8 align" style="background-color: #FAFAFA; border:thin solid #ccc;padding: 1%;">
 
-										<label for="search">Search Parent</label><input type="text" class="form-control" id="search" name="search" placeholder="Search parent..."><br/>
                     <table class="table table-bordered col-xs-12 table-sm table">
                         <thead>
                         <tr class="align bg-primary">
@@ -47,27 +46,6 @@
                 }
             });
         }
-
-	 $( "#search" ).autocomplete({
-		 close: function(event, ui){
-			 var parent = $(this).val();
-			 fetchParents();
-		 },
-		 source: 'fetchParents'
-	 });
-
-	 function fetchParents(){
-		 $.ajax({
-			 type: 'ajax',
-			 url: 'fetchParents',
-			 method: 'post',
-			 data: {'parent': parent},
-			 dataType: 'json',
-			 success: function(data){
-				 alert(data.fname)
-			 }
-		 });
-	 }
 
 		});
 
