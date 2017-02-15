@@ -6,7 +6,7 @@ class User_c extends CI_Controller {
 		{
 			  parent :: __construct();
 			  $this->load->model('User_m','m');
-			  
+
 		}
 	public function index()
 	{
@@ -27,5 +27,12 @@ class User_c extends CI_Controller {
 	}
 	public function getParents(){
 		$this->m->getParents();
+	}
+
+	public function fetchParents(){
+		$parent = strtolower($this->input->post("parent"));
+		if(isset($parent)){
+			$this->m->fetchParents($parent);
+		}
 	}
 }

@@ -5,8 +5,10 @@
 		<title>Family Module</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>" >
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap-theme.min.css'); ?>">
+		<link rel="stylesheet" href="<?php echo base_url() ?>assets/jquery-ui/jquery-ui.min.css">
 		<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/jquery.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery-ui/jquery-ui.min.js"></script>
 
 
 	</head>
