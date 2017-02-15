@@ -41,7 +41,7 @@
                         html += '<tr>' +
                                 '<td><a href="parentsPage?id='+a[i].familyid +'" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
                                 '<td>' + a[i].email +'</td>' +
-                               
+
                                 '</tr>';
                     }
                     $('#showdata').html(html);
@@ -52,7 +52,7 @@
             });
         }
         // $(document).on('click', 'a', function(){
-            
+
         //     var a = $(this).data('a');
         //     alert(a);
         // });
@@ -78,16 +78,16 @@
                          $('#showdata').html(html);
                     }
                     else{
-                       
+
                     for(var i=0; i < a.length; i++){
                         html += '<tr>' +
                                 '<td><a href=""parentsPage?id='+a[i].familyid +'"" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
-                                '<td>' + a[i].email +'</td>' +                              
+                                '<td>' + a[i].email +'</td>' +
                                 '</tr>';
                     }
                     $('#showdata').html(html);
                     }
-                    
+
                 },
                 error : function(){
 
