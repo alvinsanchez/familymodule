@@ -39,6 +39,8 @@ class User_c extends CI_Controller {
 	}
 	public function parentsPage(){
 		$data['id'] = $this->input->get('id');
+		$this->load->view('header');
 		$this->load->view('parentsPage',$data);
+		$this->load->view('footer');
 	}
 }
