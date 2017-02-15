@@ -14,9 +14,9 @@
 
 <body>
 
-<div class="navbar navbar-default">
+<div class="navbar navbar-inverse">
 	<div class="container">
-	<a class="navbar-brand" href="index" style="color: #FFF;"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp;&nbsp;School Organization Management System</a>
+	<a class="navbar-brand" href="#" style="color: #FFF;"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp;&nbsp;School Organization Management System</a>
 	<?php
 		if(isset($this->session->userdata['logged_in'])){
       	?>
