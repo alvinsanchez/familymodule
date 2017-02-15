@@ -53,17 +53,11 @@
 				var values = '';
 				var i;
 				for(i=0;i<data.length;i++){
-					if(data[i].relationship == "Mother"){
-						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Mother</font></a>';
-					}
-					if(data[i].relationship == "Father"){
-						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Father</font></a>';
-					}
-					if(data[i].relationship == "Guardian"){
-						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Guardian</font></a>';
-					}
+					var relation = data[i].relationship;
+
+					
 				}
-				$('#list').html("<a href='#' class='list-group-item active'>Family</a>"+values);
+				//$('#list').html("<a href='#' class='list-group-item active'>Family</a>"+values);
 			}
 		});
 	}
@@ -93,3 +87,13 @@
 		});
 	});
 </script>
+
+<!-- if(data[i].relationship == "Mother"){
+	values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Mother</font></a>';
+}
+if(data[i].relationship == "Father"){
+	values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Father</font></a>';
+}
+if(data[i].relationship == "Guardian"){
+	values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Guardian</font></a>';
+} -->
