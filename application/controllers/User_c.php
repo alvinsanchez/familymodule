@@ -8,4 +8,10 @@ class User_c extends CI_Controller {
 		$this->load->view('login');
 		$this->load->view('footer');
 	}
+
+	public function home(){
+		$this->load->view('header');
+		$this->load->view('student_home');
+		$this->load->view('footer');
+	}
 }
