@@ -3,13 +3,14 @@
 
     <div class="form-group">
       <label for="First name" class="col-md-3 control-label">Firstname</label>
+        <input type="hidden" name="counter" value="<?= $counter ?>">
       <div class="col-md-9">
         <input type="text" name="firstname" class="form-control" value="">
       </div>
     </div><br/><br/>
 
     <div class="form-group">
-      <label for="Middle name" class="col-md-3 control-label">Middlename</label>
+      <label for="middlename" class="col-md-3 control-label">Middle Name</label>
       <div class="col-md-9">
         <input type="text" name="middlename" class="form-control" value="">
       </div>
@@ -23,9 +24,16 @@
     </div><br/><br/>
 
     <div class="form-group">
+      <label for="middlename" class="col-md-3 control-label">Email</label>
+      <div class="col-md-9">
+        <input type="text" name="email" class="form-control" value="">
+      </div>
+    </div><br/><br/>
+
+    <div class="form-group">
       <label for="Last name" class="col-md-3 control-label">Year Level</label>
       <div class="col-md-9">
-        <select class="form-control" name="">
+        <select class="form-control" name="yearlevel">
           <option value="1">First Year</option>
           <option value="2">Second Year</option>
           <option value="3">Third Year</option>
@@ -56,32 +64,32 @@
     <div class="form-group yes"  style="display: none;">
       <label for="GuardianEmail" class="control-label col-md-4 col-md-offset-1">Search Relative</label>
       <div class="col-md-6">
-        <input type="text" class="form-control"name="" placeholder="Search Relative...">
+        <input type="text" class="form-control" name="" placeholder="Search Relative...">
       </div>
     </div>
 
     <div class="form-group no" style="display: none;">
       <div class="panel panel-default">
-        <div class="panel-heading">Father's Name</div>
+        <div class="panel-heading">Father's Information</div>
         <div class="panel-body">
           <div class="form-group">
             <label for="First Name" class="col-md-3 control-label">First Name</label>
             <div class="col-md-9">
-              <input type="text" name="student_id" class="form-control" value="">
+              <input type="text" name="fatname" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
           <div class="form-group">
             <label for="Last Name" class="col-md-3 control-label">Last Name</label>
             <div class="col-md-9">
-              <input type="text" name="lastname" class="form-control" value="">
+              <input type="text" name="lastname" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
           <div class="form-group">
             <label for="Email" class="col-md-3 control-label">Email</label>
             <div class="col-md-9">
-              <input type="text" name="fatherEmail" class="form-control" value="">
+              <input type="text" name="fatherEmail" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
@@ -89,26 +97,26 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Mother's Name</div>
+        <div class="panel-heading">Mother's Information</div>
         <div class="panel-body">
           <div class="form-group">
             <label for="First Name" class="col-md-3 control-label">First Name</label>
             <div class="col-md-9">
-              <input type="text" name="student_id" class="form-control" value="">
+              <input type="text" name="motname" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
           <div class="form-group">
             <label for="Last Name" class="col-md-3 control-label">Last Name</label>
             <div class="col-md-9">
-              <input type="text" name="lastname" class="form-control" value="">
+              <input type="text" name="lastname" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
           <div class="form-group">
             <label for="Email" class="col-md-3 control-label">Email</label>
             <div class="col-md-9">
-              <input type="text" name="fatherEmail" class="form-control" value="">
+              <input type="text" name="motherEmail" class="form-control text" value="">
             </div>
           </div><br/><br/>
 
@@ -127,6 +135,38 @@
 
 <script>
   $(document).ready(function(){
+
+
+    $('button').click(function(){
+         var data =  {
+                  'fname' : $('input[name=firstname]').val(),
+                  'mname' : $('input[name=middlename]').val(),
+                  'lname' : $('input[name=lastname]').val(),
+                  'email' : $('input[name=email]').val(),
+                  'yearlevel' : $('select[name=yearlevel]').val(),
+                  'studentid' : $('input[name=student_id]').val(),
+                  'counter' : $('input[name=counter]').val(),
+                  'fatname' : $('input[name=fatname]').val(),
+                  'fatemail' : $('input[name=fatherEmail]').val(),
+                  'motname' : $('input[name=firstname]').val(),
+                  'motemail' : $('input[name=motherEmail]').val(),
+                };      
+        $.ajax({
+
+                type : 'post',
+                url : 'registerStudent',
+                data : data,
+                dataType : 'json',
+                success : function(a){
+                  if(a.message){
+                    swal("Good job!", "Successfully Registered!", "success")
+                  }
+                },
+                error : function(){
+
+                }
+            });
+    });
 
     $('#yes, #no').click(function(){
       if($('#yes').is(':checked')){

@@ -32,5 +32,23 @@ class User_m extends CI_Model {
 
 	}
 
+	public function counter(){
+		$query = $this->db->get('tbl_family');
+		$count = $query->num_rows();
+		return $count;
+	}
+
+	public function registerStudent($userdata,$fatdata,$motdata){
+		$fadata = array('familydesc' => $userdata['lname'].' '.'Family', 'familyid' => $userdata['familyid']);
+		$this->db->insert('tbl_family',$fadata);
+		$this->db->insert('tbl_parents',$motdata);
+		$this->db->insert('tbl_parents',$fatdata);
+		$this->db->insert('tbl_students',$userdata);
+		
+		if ($this->db->affected_rows() > 0){
+			return true;
+		}
+	}
+
 
 }

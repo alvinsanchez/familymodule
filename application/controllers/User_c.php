@@ -26,9 +26,11 @@ class User_c extends CI_Controller {
 		$this->load->view('footer');
 	}
 	public function student_registration(){
+		$query = $this->m->counter();
+		$data['counter'] = $query + 1;
 		$this->load->view('header');
-		$this->load->view('student_registration');
-		$this->load->view('footer');
+		$this->load->view('student_registration',$data);
+		$this->load->view('footer');	
 	}
 	public function getParents(){
 		$this->m->getParents();
@@ -43,5 +45,33 @@ class User_c extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('parentsPage',$data);
 		$this->load->view('footer');
+	}
+	public function registerStudent(){
+		$userdata = array('fname' => $this->input->post('fname'),
+						 'mname' => $this->input->post('mname'),
+						 'lname' => $this->input->post('lname'),
+						 'email' => $this->input->post('email'),
+						 'yearlevel' => $this->input->post('yearlevel'),
+						 'studentid' => $this->input->post('studentid'),
+						 'familyid' => $this->input->post('counter')
+						 );
+		$fatdata = array('fname' => $this->input->post('fatname'),
+						'lname' => $this->input->post('lname'),
+						'email' => $this->input->post('fatemail'),
+						'relationship' => 'Father',
+						'familyid' => $this->input->post('counter')
+			);
+		$motdata = array('fname' => $this->input->post('motname'),
+						'lname' => $this->input->post('lname'),
+						'email' => $this->input->post('motemail'),
+						'relationship' => 'Mother',
+						'familyid' => $this->input->post('counter')
+			);
+		// echo json_encode($motdata);
+		$query = $this->m->registerStudent($userdata,$fatdata,$motdata);
+		if($query){
+			$message = array('message' => 'success');
+			echo json_encode($message);
+		}
 	}
 }

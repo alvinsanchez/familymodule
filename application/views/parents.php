@@ -61,7 +61,7 @@
 		});
 
         $('#search').on('keyup' , function(){
-            var search = $(this).val()
+            var search = $(this).val();
 
              $.ajax({
                 type : 'post',
