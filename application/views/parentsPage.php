@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
 <?php
 	echo $id;
 
 
 ?>
-=======
+
 <input id="accountType" type="hidden" value="" />
 
 
@@ -68,4 +68,3 @@
 	</div>
 
 </div>
->>>>>>> 5dbe955b81925a60901ff7d362390bed47dc82cf
