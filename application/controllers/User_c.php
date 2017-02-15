@@ -33,11 +33,12 @@ class User_c extends CI_Controller {
 	public function getParents(){
 		$this->m->getParents();
 	}
-
-	public function fetchParents(){
-		$parent = strtolower($this->input->post("parent"));
-		if(isset($parent)){
-			$this->m->fetchParents($parent);
-		}
+	public function searchParents(){
+		$search = $this->input->post('search');
+		$this->m->searchParents($search);
+	}
+	public function parentsPage(){
+		$data['id'] = $this->input->get('id');
+		$this->load->view('parentsPage',$data);
 	}
 }

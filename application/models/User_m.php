@@ -14,17 +14,23 @@ class User_m extends CI_Model {
 		}
 	}
 
-	public function fetchParents($parent){
-		$query = $this->db->query("SELECT CONCAT(fname,' ',lname) as fullname FROM tbl_parents WHERE fname LIKE '$parent%' ");
+
+	public function searchParents($search){
+
+		$this->db->like('fname', $search);
+		$this->db->or_like('lname', $search);
+
+		$query = $this->db->get('tbl_parents');
+		$message = array('message' => 'No data found');
+
 		if($query->num_rows() > 0){
-			foreach($query->result_array() as $row){
-				$row_set[] = htmlentities(stripslashes($row['fullname']));
-			}
-			echo json_encode($row_set);
+			echo json_encode($query->result());
 		}
 		else{
-			echo 'no data';
+			echo json_encode($message);
 		}
+
 	}
+
 
 }
