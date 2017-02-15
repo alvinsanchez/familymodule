@@ -15,7 +15,7 @@ class User_m extends CI_Model {
 	}
 
 	public function fetchParents($parent){
-		$query = $this->db->query("SELECT CONCAT(fname,' ',lname) as fullname FROM tbl_parents WHERE fname LIKE '%{$parent}%' ");
+		$query = $this->db->query("SELECT CONCAT(fname,' ',lname) as fullname FROM tbl_parents WHERE fname LIKE '$parent%' ");
 		if($query->num_rows() > 0){
 			foreach($query->result_array() as $row){
 				$row_set[] = htmlentities(stripslashes($row['fullname']));

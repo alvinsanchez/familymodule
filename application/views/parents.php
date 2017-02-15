@@ -64,7 +64,7 @@
 			 data: {'parent': parent},
 			 dataType: 'json',
 			 success: function(data){
-
+				 alert(data.fname)
 			 }
 		 });
 	 }

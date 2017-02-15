@@ -25,6 +25,11 @@ class User_c extends CI_Controller {
 		$this->load->view('parents');
 		$this->load->view('footer');
 	}
+	public function student_registration(){
+		$this->load->view('header');
+		$this->load->view('student_registration');
+		$this->load->view('footer');
+	}
 	public function getParents(){
 		$this->m->getParents();
 	}
