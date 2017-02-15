@@ -4,11 +4,8 @@
 				</div>
 				<div class="col-xs-8 align" style="background-color: #FAFAFA; border:thin solid #ccc;padding: 1%;">
 
-<<<<<<< HEAD
-=======
 										<input type="text" class="form-control" id="search" name="search" placeholder="Search parent..."><br/>
 
->>>>>>> 4b5356bf651eb821723300db8a84bcfd925c55bc
                     <table class="table table-bordered col-xs-12 table-sm table">
                         <thead>
                         <tr class="align bg-primary">
@@ -41,7 +38,7 @@
                         html += '<tr>' +
                                 '<td><a href="parentsPage?id='+a[i].familyid +'" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
                                 '<td>' + a[i].email +'</td>' +
-                               
+
                                 '</tr>';
                     }
                     $('#showdata').html(html);
@@ -52,14 +49,12 @@
             });
         }
         // $(document).on('click', 'a', function(){
-            
+
         //     var a = $(this).data('a');
         //     alert(a);
         // });
 
-<<<<<<< HEAD
-		});
-=======
+
         $('#search').on('keyup' , function(){
             var search = $(this).val()
 
@@ -78,16 +73,16 @@
                          $('#showdata').html(html);
                     }
                     else{
-                       
+
                     for(var i=0; i < a.length; i++){
                         html += '<tr>' +
                                 '<td><a href=""parentsPage?id='+a[i].familyid +'"" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
-                                '<td>' + a[i].email +'</td>' +                              
+                                '<td>' + a[i].email +'</td>' +
                                 '</tr>';
                     }
                     $('#showdata').html(html);
                     }
-                    
+
                 },
                 error : function(){
 
@@ -95,8 +90,8 @@
             });
 
         });
-        
+
     });
->>>>>>> 4b5356bf651eb821723300db8a84bcfd925c55bc
+
 
 </script>
