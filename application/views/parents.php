@@ -5,6 +5,7 @@
 				<div class="col-xs-8 align" style="background-color: #FAFAFA; border:thin solid #ccc;padding: 1%;">
 
 
+
 										<input type="text" class="form-control" id="search" name="search" placeholder="Search parent..."><br/>
 
 
@@ -94,7 +95,4 @@
             });
 
         });
-    
-
-
 </script>
