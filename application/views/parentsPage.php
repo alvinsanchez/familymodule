@@ -1,70 +1,95 @@
 
-<?php
-	echo $id;
-
-
-?>
-
-<input id="accountType" type="hidden" value="" />
-
-
-<div class="container-fluid">
+<input id="myID" type="hidden" value="<?php echo $id ?>" />
+<input type="hidden" id="famid" value="<?php echo $famid ?>"/>
 	<div class="col-md-3">
-		<div class="panel panel-default" style="width:100%; height:auto">
-			<div class="panel-default name_box">
-				<div class="grumpy-image-wrapper col-md-5">
+		<div class="container-fluid" style="border: thin solid #ccc; background-color:#FAFAFA;padding:5%;">
+			<div class="col-md-5">
+				<img src="<?php echo base_url() ?>assets/images/user.png" class="img-responsive img-thumbnail" alt="">
+			</div>
+			<div class="col-md-7">
+				<label for="name" id="name"></label><br/>
+				<label for="relationship" id="relationship"></label>
+			</div>
+		</div><br/>
 
-				</div>
-				<div class="col-md-6 acct_name"></div>
-			</div>
+		<div class="list-group" id="list">
 
-			<div class="panel-body" style="padding:0;">
-				<label class="col-md-4 font-normal"> Name: </label>
-				<label class="col-md-7 font-normal"></label>
-			</div>
-			<div class="panel-body" style="padding:0;">
-				<label class="col-md-8 font-normal"> Relationship to Student:</label>
-				<label class="col-md-4 font-normal"></label>
-			</div>
-			<div class="panel-body" style="padding:0;">
-				<label class="col-md-4 font-normal"></label>
-				<label class="col-md-7 font-normal"></label>
-			</div>
-			<hr/>
-
-			<div id="adminStudTask">
-				<label style="display:block; background:#01579B;padding: 10px;color:#FFF">List of Family</label>
-				<div class="btn-group-vertical center-block">
-					<ul>
-                        <li style="list-style: none;">Father</li>
-                        <li style="list-style: none;">Mother</li>
-                        <li style="list-style: none;">Guardidan</li>
-                    </ul>
-        			<button class="btn btn-info">Add Parent/Guardian</button>
-    			</div>
-
-			</div>
 
 		</div>
 	</div>
-	<div class="col-md-9">
-		<div class="panel panel-default" style="width:100%; height:auto" >
-		<div class="well well-sm align">
-			<center><label>&nbsp;</label></center>
-		</div>
-			<div class="tab-content">
-				<div id="showdata" class="panel-body tab-pane fade in active" >
-					<div id="page-content-wrapper">
-            <div class="container-fluid">
-    <section class="container">
-        <div class="container-page" id="conset">
+	<div class="col-md-9" id="details" style="border: thin solid #ccc; background-color:#FAFAFA;padding:1%;border-radius: 4px;">
 
-         </section>
-        </div>
-        </div>
-				</div>
-			</div>
-		</div>
 	</div>
+<script>
+	$(document).ready(function(){
+		loadSelectedID();
+		loadFamilyMembers();
 
-</div>
+	function loadSelectedID(){
+		var myID = $('#myID').val();
+		$.ajax({
+			type: 'ajax',
+			url: 'loadSelectedID',
+			method: 'post',
+			data: {'myID': myID},
+			dataType: 'json',
+			success: function(data){
+				$('#name').text(data.fname+" "+data.lname);
+				$('#relationship').text(data.relationship);
+			}
+		});
+	}
+
+	function loadFamilyMembers(){
+		var famid = $('#famid').val();
+		var myID = $('#myID').val();
+		$.ajax({
+			type: 'ajax',
+			url: 'loadFamilyMembers',
+			method: 'post',
+			data: {'famid': famid, 'myID' : myID},
+			dataType: 'json',
+			success: function(data){
+				var values = '';
+				var i;
+				for(i=0;i<data.length;i++){
+					if(data[i].relationship == "Mother"){
+						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Mother</font></a>';
+					}
+					if(data[i].relationship == "Father"){
+						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Father</font></a>';
+					}
+					if(data[i].relationship == "Guardian"){
+						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Guardian</font></a>';
+					}
+				}
+				$('#list').html("<a href='#' class='list-group-item active'>Family</a>"+values);
+			}
+		});
+	}
+
+		$('#list').on('click','.member', function(){
+			var memberID = $(this).data('value');
+			var famid = $('#famid').val();
+
+			$.ajax({
+				type: 'ajax',
+				url: 'getlistID',
+				method: 'post',
+				data: {'memberID' : memberID, 'famid': famid},
+				dataType: 'json',
+				success: function(data){
+					var details = '<label>First name</label>'+
+												'<input type="text" class="form-control" readonly value="'+data.fname+'"/><br/>'+
+												'<label>Last name</label>'+
+												'<input type="text" class="form-control" readonly value="'+data.lname+'"/><br/>'+
+												'<label>Email</label>'+
+												'<input type="text" class="form-control" readonly value="'+data.email+'"/><br/>';
+
+					$('#details').html(details);
+				}
+			});
+
+		});
+	});
+</script>

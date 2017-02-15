@@ -10,4 +10,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['parents'] = 'User_c/parents';
 $route['getParents'] = 'User_c/getParents';
 $route['searchParents'] = 'User_c/searchParents';
-$route['parentsPage'] = 'User_c/parentsPage';
+$route['parentsPage'] = 'User_c/parentsPage'; 
+$route['newstudent'] = 'User_c/student_registration';

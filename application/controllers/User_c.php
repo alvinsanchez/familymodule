@@ -44,4 +44,16 @@ class User_c extends CI_Controller {
 		$this->load->view('parentsPage',$data);
 		$this->load->view('footer');
 	}
+
+	public function loadSelectedID(){
+		$result = $this->m->loadSelectedID();
+	}
+
+	public function loadFamilyMembers(){
+		$result = $this->m->loadFamilyMembers();
+	}
+
+	public function getlistID(){
+		$result = $this->m->getlistID();
+	}
 }
