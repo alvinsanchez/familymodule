@@ -40,8 +40,9 @@ class User_c extends CI_Controller {
 		$this->m->searchParents($search);
 	}
 	public function parentsPage(){
-		$data['id'] = $this->input->get('id');
-		$data['famid'] = $this->input->get('famid');
+		$data = array('id' => $this->input->get('id'),
+					'famid' => $this->input->get('famid')
+				);
 		$this->load->view('header');
 		$this->load->view('parentsPage',$data);
 		$this->load->view('footer');
@@ -68,13 +69,21 @@ class User_c extends CI_Controller {
 						'relationship' => 'Mother',
 						'familyid' => $this->input->post('counter')
 			);
+		$olduser = array('fname' => $this->input->post('fname'),
+						 'mname' => $this->input->post('mname'),
+						 'lname' => $this->input->post('lname'),
+						 'email' => $this->input->post('email'),
+						 'yearlevel' => $this->input->post('yearlevel'),
+						 'studentid' => $this->input->post('studentid'),
+						 'familyid' => $this->input->post('familyid')
+						 );
 		// echo json_encode($motdata);
-		$query = $this->m->registerStudent($userdata,$fatdata,$motdata);
+		$query = $this->m->registerStudent($userdata,$fatdata,$motdata,$olduser);
 		if($query){
 			$message = array('message' => 'success');
 			echo json_encode($message);
 		}
-
+	}
 
 	public function loadSelectedID(){
 		$result = $this->m->loadSelectedID();
@@ -87,5 +96,11 @@ class User_c extends CI_Controller {
 	public function getlistID(){
 		$result = $this->m->getlistID();
 
+	}
+	public function loadStudents(){
+		$result = $this->m->loadStudents();
+	}
+	public function searchRelative(){
+		$this->m->searchRelative();
 	}
 }

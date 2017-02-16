@@ -17,6 +17,10 @@
 
 
 		</div>
+		<div class="list-group" id="students">
+
+
+		</div>
 	</div>
 	<div class="col-md-9" id="details" style="border: thin solid #ccc; background-color:#FAFAFA;padding:1%;border-radius: 4px;">
 
@@ -25,6 +29,7 @@
 	$(document).ready(function(){
 		loadSelectedID();
 		loadFamilyMembers();
+		loadStudents();
 
 	function loadSelectedID(){
 		var myID = $('#myID').val();
@@ -64,7 +69,26 @@
 						values += '<a href="#" data-value="'+data[i].id+'" class="list-group-item member">'+data[i].fname+" "+data[i].lname+'<font class="pull-right">Guardian</font></a>';
 					}
 				}
-				$('#list').html("<a href='#' class='list-group-item active'>Family</a>"+values);
+				$('#list').html("<a href='#' class='list-group-item active text-center'>Parents/Guardian</a>"+values);
+			}
+		});
+	}
+		function loadStudents(){
+		var famid = $('#famid').val();
+		var myID = $('#myID').val();
+		$.ajax({
+			type: 'ajax',
+			url: 'loadStudents',
+			method: 'post',
+			data: {'famid': famid, 'myID' : myID},
+			dataType: 'json',
+			success: function(s){
+				var html = '';
+				var i;
+				for(i=0;i<s.length;i++){
+					html += '<a href="#" data-value="'+s[i].id+'" class="list-group-item member">'+s[i].fname+" "+s[i].lname;
+				}
+				$('#students').html("<a href='#' class='list-group-item active text-center'>Children</a>"+html);
 			}
 		});
 	}

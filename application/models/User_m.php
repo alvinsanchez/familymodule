@@ -39,16 +39,25 @@ class User_m extends CI_Model {
 		return $count;
 	}
 
-	public function registerStudent($userdata,$fatdata,$motdata){
-		$fadata = array('familydesc' => $userdata['lname'].' '.'Family', 'familyid' => $userdata['familyid']);
-		$this->db->insert('tbl_family',$fadata);
-		$this->db->insert('tbl_parents',$motdata);
-		$this->db->insert('tbl_parents',$fatdata);
-		$this->db->insert('tbl_students',$userdata);
-		
-		if ($this->db->affected_rows() > 0){
-			return true;
+	public function registerStudent($userdata,$fatdata,$motdata,$olduser){
+		if($this->input->post('status')=='new'){
+			$fadata = array('familydesc' => $userdata['lname'].' '.'Family', 'familyid' => $userdata['familyid']);
+			$this->db->insert('tbl_family',$fadata);
+			$this->db->insert('tbl_parents',$motdata);
+			$this->db->insert('tbl_parents',$fatdata);
+			$this->db->insert('tbl_students',$userdata);
+			
+			if ($this->db->affected_rows() > 0){
+				return true;
+			}
 		}
+		else{
+			$this->db->insert('tbl_students',$olduser);
+			if ($this->db->affected_rows() > 0){
+				return true;
+			}
+		}
+		
 	}
 
 
@@ -85,6 +94,30 @@ class User_m extends CI_Model {
 		}
 		else{
 			return false;
+		}
+	}
+	public function loadStudents(){
+		$myID = $this->input->post('myID');
+		$famid = $this->input->post('famid');
+		$query = $this->db->query("SELECT * FROM tbl_students WHERE familyid='$famid'");
+		if($query->num_rows() > 0){
+			echo json_encode($query->result());
+		}
+		else{
+			return false;
+		}
+	}
+	public function searchRelative(){
+		$this->db->select('Concat(fname," ",lname) as name', False);
+		$this->db->select('familyid');
+		$this->db->like('Concat(fname,lname)', $this->input->post('search'));
+		$query = $this->db->get('tbl_students');
+		$message = array('message' => 'No data found');
+		if($query->num_rows() > 0){
+			echo json_encode($query->result());
+		}
+		else{
+			echo json_encode($message);
 		}
 	}
 }

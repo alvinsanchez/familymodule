@@ -64,7 +64,10 @@
     <div class="form-group yes"  style="display: none;">
       <label for="GuardianEmail" class="control-label col-md-4 col-md-offset-1">Search Relative</label>
       <div class="col-md-6">
-        <input type="text" class="form-control" name="" placeholder="Search Relative...">
+        <input type="text" class="form-control" name="search" placeholder="brother/sister">
+        <ul class="search">
+          
+        </ul>
       </div>
     </div>
 
@@ -125,7 +128,7 @@
     </div><br/>
 
     <div class="form-group">
-        <button type="button" class="btn btn-primary" name="subButton">Submit</button>
+        <button type="button" class="btn btn-primary" id="save" name="subButton">Submit</button>
       </div>
     </div><br/><br/>
 
@@ -137,8 +140,10 @@
   $(document).ready(function(){
 
 
-    $('button').click(function(){
-         var data =  {
+    $('#save').click(function(){
+     if($("input:radio[id='no']").is(":checked")) {
+       var data =  {
+                  'status' : 'new',
                   'fname' : $('input[name=firstname]').val(),
                   'mname' : $('input[name=middlename]').val(),
                   'lname' : $('input[name=lastname]').val(),
@@ -148,7 +153,7 @@
                   'counter' : $('input[name=counter]').val(),
                   'fatname' : $('input[name=fatname]').val(),
                   'fatemail' : $('input[name=fatherEmail]').val(),
-                  'motname' : $('input[name=firstname]').val(),
+                  'motname' : $('input[name=motname]').val(),
                   'motemail' : $('input[name=motherEmail]').val(),
                 };      
         $.ajax({
@@ -166,8 +171,35 @@
 
                 }
             });
-    });
+      }
+      else{
+        var data =  {
+                  'status' : 'old',
+                  'fname' : $('input[name=firstname]').val(),
+                  'mname' : $('input[name=middlename]').val(),
+                  'lname' : $('input[name=lastname]').val(),
+                  'email' : $('input[name=email]').val(),
+                  'yearlevel' : $('select[name=yearlevel]').val(),
+                  'studentid' : $('input[name=student_id]').val(),
+                  'familyid' : $('.id').val()
+              }
+                $.ajax({
 
+                type : 'post',
+                url : 'registerStudent',
+                data : data,
+                dataType : 'json',
+                success : function(a){
+                  if(a.message){
+                    swal("Good job!", "Successfully Registered!", "success")
+                  }
+                },
+                error : function(){
+
+                }
+            });
+            }
+    });
     $('#yes, #no').click(function(){
       if($('#yes').is(':checked')){
         $('.yes').show();
@@ -178,5 +210,35 @@
         $('.yes').hide();
       }
     });
+     $('input[name="search"]').on('keyup' , function(){
+            var search = $(this).val();
+             $.ajax({
+                type : 'post',
+                url : 'User_c/searchRelative',
+                data : {'search' : search},
+                dataType : 'json',
+
+                success : function(a){
+                     var html = '';
+                    if(search!=''){
+                    if(a.message=='No data found'){
+                         html += '<li style="list-style:none;">'+a.message+'</li>';
+                         $('.search').html(html);
+                    }
+                    else{
+
+                    for(var i=0; i < a.length; i++){
+                       html += '<li style="list-style:none;" class="id" value="'+ a[i].familyid +'">'+a[i].name+'</li>'
+                    }
+                    $('.search').html(html);
+                    }
+                    }
+                    else{
+                    $('.search').html('');
+                    }
+
+                }
+          });
+             });
   });
 </script>
