@@ -39,6 +39,7 @@ class User_m extends CI_Model {
 		return $count;
 	}
 
+
 	public function registerStudent($userdata,$fatdata,$motdata,$olduser){
 		if($this->input->post('status')=='new'){
 			$fadata = array('familydesc' => $userdata['lname'].' '.'Family', 'familyid' => $userdata['familyid']);
@@ -56,6 +57,17 @@ class User_m extends CI_Model {
 			if ($this->db->affected_rows() > 0){
 				return true;
 			}
+
+	public function registerStudent($userdata,$fatdata,$motdata){
+		$fadata = array('familydesc' => $userdata['lname'].' '.'Family', 'familyid' => $userdata['familyid']);
+		$this->db->insert('tbl_family',$fadata);
+		$this->db->insert('tbl_parents',$motdata);
+		$this->db->insert('tbl_parents',$fatdata);
+		$this->db->insert('tbl_students',$userdata);
+
+		if ($this->db->affected_rows() > 0){
+			return true;
+
 		}
 		
 	}
@@ -81,7 +93,7 @@ class User_m extends CI_Model {
 			echo json_encode($query->result());
 		}
 		else{
-			return false;
+			echo json_encode($query->num_rows());
 		}
 	}
 
@@ -96,6 +108,7 @@ class User_m extends CI_Model {
 			return false;
 		}
 	}
+
 	public function loadStudents(){
 		$myID = $this->input->post('myID');
 		$famid = $this->input->post('famid');
@@ -119,5 +132,18 @@ class User_m extends CI_Model {
 		else{
 			echo json_encode($message);
 		}
+
+
+	public function addFamilyMember(){
+		$data = array(
+			'fname'=> $this->input->post('firstname'),
+			'lname'=> $this->input->post('lastname'),
+			'email'=> $this->input->post('email'),
+			'relationship' => $this->input->post('relationship'),
+			'familyid'=> $this->input->post('familyID')
+		);
+
+		$this->db->insert('tbl_parents', $data);
+
 	}
 }

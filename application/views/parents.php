@@ -39,7 +39,7 @@
                     var html = '';
                     for(var i=0; i < a.length; i++){
                         html += '<tr>' +
-                                '<td><a href="parentsPage?famid='+a[i].familyid +'&id='+a[i].id+'" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
+                                '<td><a href="parentsPage?famid='+a[i].familyid +'&id='+a[i].id+'&position='+a[i].relationship+'" data-a="'+ a[i].familyid +'">' + a[i].fname + ' ' + a[i].lname +'</a></td>' +
                                 '<td>' + a[i].email +'</td>' +
 
                                 '</tr>';

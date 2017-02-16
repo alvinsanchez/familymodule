@@ -13,7 +13,10 @@ $route['searchParents'] = 'User_c/searchParents';
 $route['parentsPage'] = 'User_c/parentsPage'; 
 $route['newstudent'] = 'User_c/student_registration';
 $route['registerStudent'] = 'User_c/registerStudent';
+
 $route['loadSelectedID'] = 'User_c/loadSelectedID';
 $route['loadFamilyMembers'] = 'User_c/loadFamilyMembers';
 $route['getlistID'] = 'User_c/getlistID';
 $route['loadStudents'] = 'User_c/loadStudents';
+
+

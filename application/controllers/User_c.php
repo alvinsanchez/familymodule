@@ -30,7 +30,7 @@ class User_c extends CI_Controller {
 		$data['counter'] = $query + 1;
 		$this->load->view('header');
 		$this->load->view('student_registration',$data);
-		$this->load->view('footer');	
+		$this->load->view('footer');
 	}
 	public function getParents(){
 		$this->m->getParents();
@@ -40,9 +40,15 @@ class User_c extends CI_Controller {
 		$this->m->searchParents($search);
 	}
 	public function parentsPage(){
+
 		$data = array('id' => $this->input->get('id'),
 					'famid' => $this->input->get('famid')
 				);
+
+		$data['id'] = $this->input->get('id');
+		$data['famid'] = $this->input->get('famid');
+		$data['position'] = $this->input->get('position');
+
 		$this->load->view('header');
 		$this->load->view('parentsPage',$data);
 		$this->load->view('footer');
@@ -83,7 +89,11 @@ class User_c extends CI_Controller {
 			$message = array('message' => 'success');
 			echo json_encode($message);
 		}
+
 	}
+
+}
+
 
 	public function loadSelectedID(){
 		$result = $this->m->loadSelectedID();
@@ -95,7 +105,10 @@ class User_c extends CI_Controller {
 
 	public function getlistID(){
 		$result = $this->m->getlistID();
+	}
 
+	public function addFamilyMember(){
+		$result = $this->m->addFamilyMember();
 	}
 	public function loadStudents(){
 		$result = $this->m->loadStudents();
